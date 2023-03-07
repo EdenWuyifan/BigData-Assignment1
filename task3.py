@@ -23,6 +23,6 @@ if __name__ == "__main__":
     average = total.join(count) \
         .map(lambda x: "%s\t %.2f, %.2f" % (x[0], x[1][0], x[1][0]/x[1][1]))
 
-    average.saveAsTextFile("yfw215_task3.out")
+    average.saveAsTextFile("task3.out")
 
     sc.stop()

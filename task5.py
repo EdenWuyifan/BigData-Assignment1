@@ -20,6 +20,6 @@ if __name__ == "__main__":
         .map(lambda x: "%s\t %d" % (x[0], x[1]))
     
     count = sc.parallelize(count.take(1))
-    count.saveAsTextFile("yfw215_task5.out")
+    count.saveAsTextFile("task5.out")
 
     sc.stop()

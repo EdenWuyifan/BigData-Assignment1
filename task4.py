@@ -18,6 +18,6 @@ if __name__ == "__main__":
         .reduceByKey(lambda x, y: x + y) \
         .map(lambda x: "%s\t %d" % (x[0], x[1]))
 
-    count.saveAsTextFile("yfw215_task4.out")
+    count.saveAsTextFile("task4.out")
 
     sc.stop()

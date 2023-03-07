@@ -17,6 +17,6 @@ if __name__ == "__main__":
     opened.createOrReplaceTempView("opened")
 
     result=spark.sql("SELECT precinct, SUM(amount_due) AS total, AVG(amount_due) AS average FROM opened GROUP BY precinct")
-    result.select(format_string('%s\t %.2f, %.2f', result.precinct, result.total, result.average)).write.save("yfw215_task3-sql.out", format="text")
+    result.select(format_string('%s\t %.2f, %.2f', result.precinct, result.total, result.average)).write.save("task3-sql.out", format="text")
 
     sc.stop()

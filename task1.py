@@ -18,6 +18,6 @@ if __name__ == "__main__":
     paid_lines = issued_lines.filter(lambda x: x[0] not in open_SN) \
         .map(lambda x: "%s\t%s, %s, %s, %s" % (x[0], x[3], x[16], x[2], x[1]))
 
-    paid_lines.saveAsTextFile("yfw215_task1.out")
+    paid_lines.saveAsTextFile("task1.out")
 
     sc.stop()

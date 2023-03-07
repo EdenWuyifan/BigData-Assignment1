@@ -16,6 +16,6 @@ if __name__ == "__main__":
         .reduceByKey(lambda x, y: x + y) \
         .map(lambda x: "%s\t %d" % (x[0], x[1]))
 
-    violated_lines.saveAsTextFile("yfw215_task2.out")
+    violated_lines.saveAsTextFile("task2.out")
 
     sc.stop()

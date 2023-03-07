@@ -17,6 +17,6 @@ if __name__ == "__main__":
     opened.createOrReplaceTempView("opened")
 
     result=spark.sql("SELECT violation, COUNT(*) AS counts FROM opened GROUP BY violation")
-    result.select(format_string('%s\t %d', result.violation, result.counts)).write.save("yfw215_task2-sql.out", format="text")
+    result.select(format_string('%s\t %d', result.violation, result.counts)).write.save("task2-sql.out", format="text")
 
     sc.stop()

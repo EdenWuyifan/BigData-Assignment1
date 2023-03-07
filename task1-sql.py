@@ -20,6 +20,6 @@ if __name__ == "__main__":
     opened.createOrReplaceTempView("opened")
 
     result = spark.sql("SELECT issued.summons_number, issued.violation_county, issued.registration_state, issued.violation_code, issued.issue_date FROM issued LEFT JOIN opened ON issued.summons_number=opened.summons_number WHERE opened.summons_number is NULL")
-    result.select(format_string('%d\t%s, %s, %d, %s', result.summons_number, result.violation_county, result.registration_state, result.violation_code, date_format(result.issue_date, 'yyyy-MM-dd'))).write.save("yfw215_task1-sql.out",format="text")
+    result.select(format_string('%d\t%s, %s, %d, %s', result.summons_number, result.violation_county, result.registration_state, result.violation_code, date_format(result.issue_date, 'yyyy-MM-dd'))).write.save("task1-sql.out",format="text")
 
     sc.stop()
