@@ -16,7 +16,7 @@ if __name__ == "__main__":
     issued = spark.read.format('csv').options(header='true',inferschema='true').load("/shared/CS-GY-6513/parking-violations/parking-violations-header.csv")
     issued.createOrReplaceTempView("issued")
 
-    result = spark.sql("SELECT vehicle_make, COUNT(*) AS count FROM issued GROUP BY vehicle_make ORDER BY count DESC LIMIT 10")
-    result.select(format_string('%s\t %d', result.vehicle_make, result.count)).write.save("task6-sql.out", format="text")
+    result = spark.sql("SELECT vehicle_make, COUNT(*) AS counts FROM issued GROUP BY vehicle_make ORDER BY counts DESC LIMIT 10")
+    result.select(format_string('%s\t %d', result.vehicle_make, result.counts)).write.save("task6-sql.out", format="text")
 
     sc.stop()

@@ -16,7 +16,7 @@ if __name__ == "__main__":
     issued = spark.read.format('csv').options(header='true',inferschema='true').load("/shared/CS-GY-6513/parking-violations/parking-violations-header.csv")
     issued.createOrReplaceTempView("issued")
 
-    result = spark.sql("SELECT registration_state, COUNT(registration_state) AS count FROM (SELECT CASE WHEN issued.registration_state LIKE 'NY' THEN 'NY' ELSE 'Other' END AS registration_state FROM issued) GROUP BY registration_state")
-    result.select(format_string('%s\t %d', result.registration_state, result.count)).write.save("task4-sql.out", format="text")
+    result = spark.sql("SELECT registration_state, COUNT(registration_state) AS counts FROM (SELECT CASE WHEN issued.registration_state LIKE 'NY' THEN 'NY' ELSE 'Other' END AS registration_state FROM issued) GROUP BY registration_state")
+    result.select(format_string('%s\t %d', result.registration_state, result.counts)).write.save("task4-sql.out", format="text")
 
     sc.stop()
