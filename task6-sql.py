@@ -13,7 +13,7 @@ if __name__ == "__main__":
         .config("spark.some.config.option", "some-value") \
         .getOrCreate()
 
-    issued = spark.read.format('csv').options(header='true',inferschema='true').load("/shared/CS-GY-6513/parking-violations/parking-violations-header.csv")
+    issued = spark.read.format('csv').options(header='true',inferschema='true').load(sys.argv[1])
     issued.createOrReplaceTempView("issued")
 
     result = spark.sql("SELECT vehicle_make, COUNT(*) AS counts FROM issued GROUP BY vehicle_make ORDER BY counts DESC LIMIT 10")

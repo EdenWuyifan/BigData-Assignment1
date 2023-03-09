@@ -13,7 +13,7 @@ if __name__ == "__main__":
         .config("spark.some.config.option", "some-value") \
         .getOrCreate()
 
-    issued = spark.read.format('csv').options(header='true',inferschema='true').load("/shared/CS-GY-6513/parking-violations/parking-violations-header.csv")
+    issued = spark.read.format('csv').options(header='true',inferschema='true').load(sys.argv[1])
     issued.createOrReplaceTempView("issued")
 
     result = spark.sql("SELECT registration_state, COUNT(registration_state) AS counts FROM (SELECT CASE WHEN issued.registration_state LIKE 'NY' THEN 'NY' ELSE 'Other' END AS registration_state FROM issued) GROUP BY registration_state")
