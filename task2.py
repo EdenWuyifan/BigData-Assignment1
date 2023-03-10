@@ -11,6 +11,8 @@ if __name__ == "__main__":
 
     open_lines = sc.textFile(sys.argv[1], 1)
     open_lines = open_lines.mapPartitions(lambda x: reader(x))
+    to_be_strip = open_lines.first()
+    open_lines = open_lines.filter(lambda x: x != to_be_strip)
 
     violated_lines = open_lines.map(lambda x: (x[7], 1)) \
         .reduceByKey(lambda x, y: x + y) \
